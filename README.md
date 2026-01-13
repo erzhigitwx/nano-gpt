@@ -1,5 +1,4 @@
 [main.md](https://github.com/user-attachments/files/24590725/main.md)
-::: {#initial_id .cell .code execution_count="8" ExecuteTime="{\"end_time\":\"2026-01-13T12:03:11.512966Z\",\"start_time\":\"2026-01-13T12:03:11.509185Z\"}" collapsed="true"}
 ``` python
 import torch
 import torch.nn as nn
@@ -8,22 +7,12 @@ import torch.optim as optim
 import matplotlib.pyplot as plt
 import math
 ```
-:::
-
-:::: {#21fea43e34e63724 .cell .code execution_count="9" ExecuteTime="{\"end_time\":\"2026-01-13T12:03:12.401064Z\",\"start_time\":\"2026-01-13T12:03:12.321399Z\"}"}
 ``` python
 with open("input.txt", "r", encoding="utf-8") as f:
     file = f.read()
 letters = list(file)
 print(len(letters))
 ```
-
-::: {.output .stream .stdout}
-    1115394
-:::
-::::
-
-:::: {#fedc13dbc48d9c9e .cell .code execution_count="10" ExecuteTime="{\"end_time\":\"2026-01-13T12:03:13.726159Z\",\"start_time\":\"2026-01-13T12:03:13.161748Z\"}"}
 ``` python
 chars = sorted(set(letters))
 stoi = {ch: i for i, ch in enumerate(chars)}
@@ -46,7 +35,6 @@ print(C.shape)
 :::
 ::::
 
-::: {#7c1f5275c530dc5e .cell .code execution_count="11" ExecuteTime="{\"end_time\":\"2026-01-13T12:03:14.452802Z\",\"start_time\":\"2026-01-13T12:03:14.449112Z\"}"}
 ``` python
 def positional_encoding(seq_len, d_model):
     pe = torch.zeros(seq_len, d_model)
@@ -58,9 +46,6 @@ def positional_encoding(seq_len, d_model):
     pe[:, 1::2] = torch.cos(position * div_term)
     return pe
 ```
-:::
-
-::: {#a22c85f3eaf387b0 .cell .code execution_count="12" ExecuteTime="{\"end_time\":\"2026-01-13T12:03:15.546194Z\",\"start_time\":\"2026-01-13T12:03:15.435686Z\"}"}
 ``` python
 block_size = 128
 batch_size = 32
@@ -77,9 +62,6 @@ x_emb = token_embedding(x) # 32 x 128 x 512
 pos_enc = positional_encoding(128, 512)
 x_emb = x_emb + pos_enc
 ```
-:::
-
-::: {#b1f9a372cfa32f73 .cell .code execution_count="19" ExecuteTime="{\"end_time\":\"2026-01-13T12:04:18.925461Z\",\"start_time\":\"2026-01-13T12:04:18.919296Z\"}"}
 ``` python
 class MultiHeadAttention(nn.Module):
     def __init__(self, d_model, num_heads):
@@ -119,9 +101,6 @@ class MultiHeadAttention(nn.Module):
 
         return self.W_o(out)
 ```
-:::
-
-::: {#89931f7481d4f154 .cell .code execution_count="14" ExecuteTime="{\"end_time\":\"2026-01-13T12:03:16.931784Z\",\"start_time\":\"2026-01-13T12:03:16.927555Z\"}"}
 ``` python
 class EncoderBlock(nn.Module):
     def __init__(self, d_model, num_heads, d_ff):
@@ -144,9 +123,6 @@ class EncoderBlock(nn.Module):
 
         return x
 ```
-:::
-
-::: {#b0cb8b00e39fc591 .cell .code execution_count="15" ExecuteTime="{\"end_time\":\"2026-01-13T12:03:18.235801Z\",\"start_time\":\"2026-01-13T12:03:18.231936Z\"}"}
 ``` python
 class DecoderBlock(nn.Module):
     def __init__(self, d_model, num_heads, d_ff):
@@ -169,9 +145,6 @@ class DecoderBlock(nn.Module):
 
         return x
 ```
-:::
-
-::: {#5750e3187428e272 .cell .code execution_count="27" ExecuteTime="{\"end_time\":\"2026-01-13T12:13:04.503730Z\",\"start_time\":\"2026-01-13T12:13:04.500235Z\"}"}
 ``` python
 def create_causal_mask(seq_len):
     mask = torch.triu(torch.ones(seq_len, seq_len), diagonal=1)
@@ -182,9 +155,6 @@ def create_causal_mask(seq_len):
 def decode(indices):
     return ''.join([itos[int(i)] for i in indices])
 ```
-:::
-
-::: {#7abc0c854118f294 .cell .code execution_count="17" ExecuteTime="{\"end_time\":\"2026-01-13T12:03:22.108350Z\",\"start_time\":\"2026-01-13T12:03:22.102619Z\"}"}
 ``` python
 class GPT(nn.Module):
     def __init__(self, vocab_size, d_model, num_heads, num_layers, d_ff, block_size):
@@ -239,9 +209,6 @@ class GPT(nn.Module):
 
         return idx
 ```
-:::
-
-:::: {#7b66405900fbfb80 .cell .code execution_count="28" ExecuteTime="{\"end_time\":\"2026-01-13T12:28:41.925727Z\",\"start_time\":\"2026-01-13T12:13:12.553628Z\"}"}
 ``` python
 model = GPT(
     vocab_size=vocab_size,
@@ -440,26 +407,13 @@ for epoch in range(num_epochs):
     And as when so discover a few blasting foul minds
     traitors? as they are ch
     ==================================================
-:::
-::::
-
-:::: {#7e5c68f6a2300b83 .cell .code execution_count="30" ExecuteTime="{\"end_time\":\"2026-01-13T12:29:03.985791Z\",\"start_time\":\"2026-01-13T12:29:03.981969Z\"}"}
 ``` python
 loss.item()
 ```
-
-::: {.output .execute_result execution_count="30"}
     0.3808194696903229
-:::
-::::
-
-::: {#178a2c0283059ef6 .cell .code execution_count="31" ExecuteTime="{\"end_time\":\"2026-01-13T12:34:01.366536Z\",\"start_time\":\"2026-01-13T12:34:01.363571Z\"}"}
 ``` python
 # trying to make smth with user-input. Of course model is not good enough but we have what we have :)
 ```
-:::
-
-:::: {#79899c79f5de0351 .cell .code execution_count="33" ExecuteTime="{\"end_time\":\"2026-01-13T12:37:01.548345Z\",\"start_time\":\"2026-01-13T12:36:59.438456Z\"}"}
 ``` python
 prompt = "tell me about the lord, how kind is he?"
 context_indices = torch.tensor([stoi[c] for c in prompt], dtype=torch.long, device=device).unsqueeze(0)
@@ -479,4 +433,3 @@ print(output_text)
     If she plays else you all happiness after byOr this, which, by something approach
     Hath made to if the jewel. Then he had
 :::
-::::
