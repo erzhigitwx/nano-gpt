@@ -1,24 +1,4 @@
-[vertopal.com_main.md](https://github.com/user-attachments/files/24590602/vertopal.com_main.md)
----
-jupyter:
-  kernelspec:
-    display_name: Python 3
-    language: python
-    name: python3
-  language_info:
-    codemirror_mode:
-      name: ipython
-      version: 2
-    file_extension: .py
-    mimetype: text/x-python
-    name: python
-    nbconvert_exporter: python
-    pygments_lexer: ipython2
-    version: 2.7.6
-  nbformat: 4
-  nbformat_minor: 5
----
-
+[main.md](https://github.com/user-attachments/files/24590725/main.md)
 ::: {#initial_id .cell .code execution_count="8" ExecuteTime="{\"end_time\":\"2026-01-13T12:03:11.512966Z\",\"start_time\":\"2026-01-13T12:03:11.509185Z\"}" collapsed="true"}
 ``` python
 import torch
@@ -30,7 +10,7 @@ import math
 ```
 :::
 
-::: {#21fea43e34e63724 .cell .code execution_count="9" ExecuteTime="{\"end_time\":\"2026-01-13T12:03:12.401064Z\",\"start_time\":\"2026-01-13T12:03:12.321399Z\"}"}
+:::: {#21fea43e34e63724 .cell .code execution_count="9" ExecuteTime="{\"end_time\":\"2026-01-13T12:03:12.401064Z\",\"start_time\":\"2026-01-13T12:03:12.321399Z\"}"}
 ``` python
 with open("input.txt", "r", encoding="utf-8") as f:
     file = f.read()
@@ -41,9 +21,9 @@ print(len(letters))
 ::: {.output .stream .stdout}
     1115394
 :::
-:::
+::::
 
-::: {#fedc13dbc48d9c9e .cell .code execution_count="10" ExecuteTime="{\"end_time\":\"2026-01-13T12:03:13.726159Z\",\"start_time\":\"2026-01-13T12:03:13.161748Z\"}"}
+:::: {#fedc13dbc48d9c9e .cell .code execution_count="10" ExecuteTime="{\"end_time\":\"2026-01-13T12:03:13.726159Z\",\"start_time\":\"2026-01-13T12:03:13.161748Z\"}"}
 ``` python
 chars = sorted(set(letters))
 stoi = {ch: i for i, ch in enumerate(chars)}
@@ -64,7 +44,7 @@ print(C.shape)
     {'\n': 0, ' ': 1, '!': 2, '$': 3, '&': 4, "'": 5, ',': 6, '-': 7, '.': 8, '3': 9, ':': 10, ';': 11, '?': 12, 'A': 13, 'B': 14, 'C': 15, 'D': 16, 'E': 17, 'F': 18, 'G': 19, 'H': 20, 'I': 21, 'J': 22, 'K': 23, 'L': 24, 'M': 25, 'N': 26, 'O': 27, 'P': 28, 'Q': 29, 'R': 30, 'S': 31, 'T': 32, 'U': 33, 'V': 34, 'W': 35, 'X': 36, 'Y': 37, 'Z': 38, 'a': 39, 'b': 40, 'c': 41, 'd': 42, 'e': 43, 'f': 44, 'g': 45, 'h': 46, 'i': 47, 'j': 48, 'k': 49, 'l': 50, 'm': 51, 'n': 52, 'o': 53, 'p': 54, 'q': 55, 'r': 56, 's': 57, 't': 58, 'u': 59, 'v': 60, 'w': 61, 'x': 62, 'y': 63, 'z': 64}
     torch.Size([1115394, 512])
 :::
-:::
+::::
 
 ::: {#7c1f5275c530dc5e .cell .code execution_count="11" ExecuteTime="{\"end_time\":\"2026-01-13T12:03:14.452802Z\",\"start_time\":\"2026-01-13T12:03:14.449112Z\"}"}
 ``` python
@@ -261,7 +241,7 @@ class GPT(nn.Module):
 ```
 :::
 
-::: {#7b66405900fbfb80 .cell .code execution_count="28" ExecuteTime="{\"end_time\":\"2026-01-13T12:28:41.925727Z\",\"start_time\":\"2026-01-13T12:13:12.553628Z\"}"}
+:::: {#7b66405900fbfb80 .cell .code execution_count="28" ExecuteTime="{\"end_time\":\"2026-01-13T12:28:41.925727Z\",\"start_time\":\"2026-01-13T12:13:12.553628Z\"}"}
 ``` python
 model = GPT(
     vocab_size=vocab_size,
@@ -461,9 +441,9 @@ for epoch in range(num_epochs):
     traitors? as they are ch
     ==================================================
 :::
-:::
+::::
 
-::: {#7e5c68f6a2300b83 .cell .code execution_count="30" ExecuteTime="{\"end_time\":\"2026-01-13T12:29:03.985791Z\",\"start_time\":\"2026-01-13T12:29:03.981969Z\"}"}
+:::: {#7e5c68f6a2300b83 .cell .code execution_count="30" ExecuteTime="{\"end_time\":\"2026-01-13T12:29:03.985791Z\",\"start_time\":\"2026-01-13T12:29:03.981969Z\"}"}
 ``` python
 loss.item()
 ```
@@ -471,7 +451,7 @@ loss.item()
 ::: {.output .execute_result execution_count="30"}
     0.3808194696903229
 :::
-:::
+::::
 
 ::: {#178a2c0283059ef6 .cell .code execution_count="31" ExecuteTime="{\"end_time\":\"2026-01-13T12:34:01.366536Z\",\"start_time\":\"2026-01-13T12:34:01.363571Z\"}"}
 ``` python
@@ -479,7 +459,7 @@ loss.item()
 ```
 :::
 
-::: {#79899c79f5de0351 .cell .code execution_count="33" ExecuteTime="{\"end_time\":\"2026-01-13T12:37:01.548345Z\",\"start_time\":\"2026-01-13T12:36:59.438456Z\"}"}
+:::: {#79899c79f5de0351 .cell .code execution_count="33" ExecuteTime="{\"end_time\":\"2026-01-13T12:37:01.548345Z\",\"start_time\":\"2026-01-13T12:36:59.438456Z\"}"}
 ``` python
 prompt = "tell me about the lord, how kind is he?"
 context_indices = torch.tensor([stoi[c] for c in prompt], dtype=torch.long, device=device).unsqueeze(0)
@@ -499,4 +479,4 @@ print(output_text)
     If she plays else you all happiness after byOr this, which, by something approach
     Hath made to if the jewel. Then he had
 :::
-:::
+::::
